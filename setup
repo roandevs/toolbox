@@ -1,0 +1,12 @@
+echo "[Unit] 
+Description=toolbox
+After=network.target 
+[Service]  
+ExecStart=/usr/bin/npm run start 
+WorkingDirectory=/opt/rsakeys.org/toolbox
+User=rsakeys
+[Install] 
+WantedBy=multi-user.target" > /etc/systemd/system/toolbox.service & wait $!
+sudo systemctl daemon-reload & wait $!
+sudo systemctl enable toolbox.service & wait $!
+sudo service toolbox start & wait $!
